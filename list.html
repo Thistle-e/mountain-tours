@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши туры | Горные приключения</title>
+    <!-- Локальный Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm"> 
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="index.html">
+                <img src="img/лого.png" alt="Logo" width="40" height="40" class="me-2">
+                ГОРНЫЕ ТУРЫ
+            </a>
+            <div class="ms-auto">
+                <ul class="navbar-nav flex-row gap-4">
+                    <li><a class="nav-link" href="index.html">Главная</a></li>
+                    <li><a class="nav-link active" href="list.html">Список</a></li>
+                    <li><a class="nav-link" href="form.html">Форма</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <section class="list-bg py-5">
+        <main class="container py-5 mt-5">
+            <header class="text-center my-5 text-white">
+                <h1 class="fw-bold">Выберите свой маршрут</h1>
+            </header>
+
+            <div class="row g-4">
+                <!-- Карточка 1 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card tour-card h-100 p-3 shadow-sm border-0">
+                        <img src="img/Эверест.png"" class="card-img-top rounded-4" alt="Эльбрус">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">Вершина Эльбрус</h5>
+                            <p class="card-text text-muted">Восхождение на самую высокую точку Европы с опытными гидами.</p>
+                            <a href="item-1.html" class="btn btn-mountain w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card tour-card h-100 p-3 shadow-sm border-0">
+                        <img src="img/Фудзи.png" class="card-img-top rounded-4" alt="Казбек">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">Гора Фудзи</h5>
+                            <p class="card-text text-muted">Легендарная гора и невероятные ледники ждут вас.</p>
+                            <a href="item-2.html" class="btn btn-mountain w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card tour-card h-100 p-3 shadow-sm border-0">
+                        <img src="img/Арарат.png" class="card-img-top rounded-4" alt="Алтай">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">Гора Арарат</h5>
+                            <p class="card-text text-muted">Путешествие к подножию горы Арарат.</p>
+                            <a href="item-3.html" class="btn btn-mountain w-100">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <footer class="text-center mt-5"><p>&copy; 2026 Горные туры</p></footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

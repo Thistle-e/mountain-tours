@@ -1,0 +1,36 @@
+:root {
+    --mt-brown: #5d2e1a;
+    --mt-light: #fdf5f2;
+}
+
+body { font-family: 'Segoe UI', sans-serif; color: #333; }
+
+/* Навигация */
+.navbar { background-color: rgba(0, 0, 0, 0.5) !important; backdrop-filter: blur(10px); }
+.nav-link { color: #fff !important; font-weight: 500; }
+
+/*фон*/
+.hero-bg, .form-bg, .list-bg {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('../img/фон.png') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex; align-items: center;
+}
+
+/* Карточки */
+.tour-card {
+    border: none; border-radius: 20px;
+    background-color: var(--mt-light);
+    transition: 0.3s;
+}
+.tour-card:hover { transform: translateY(-10px); }
+
+/* Кнопки */
+.btn-mountain {
+    background-color: var(--mt-brown); color: #fff;
+    border-radius: 10px; padding: 10px 25px; border: none;
+}
+.btn-mountain:hover { background-color: #452113; color: #fff; }
+
+footer { background: #222; color: #fff; padding: 20px 0; }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оставить заявку | Горные приключения</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="index.html">
+                <img src="img/лого.png" alt="Logo" width="40" height="40" class="me-2">
+                ГОРНЫЕ ТУРЫ
+            </a>
+            <div class="ms-auto">
+                <ul class="navbar-nav flex-row gap-4">
+                    <li><a class="nav-link" href="index.html">Главная</a></li>
+                    <li><a class="nav-link" href="list.html">Список</a></li>
+                    <li><a class="nav-link active" href="form.html">Форма</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="form-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div class="bg-white p-5 rounded-5 shadow-lg text-center">
+                        <h2 class="mb-4 fw-bold" style="color: var(--mt-brown)">ОСТАВИТЬ ЗАЯВКУ</h2>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" id="name" name="name" class="form-control form-control-lg border-0 bg-light px-4" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" id="phone" name="phone" class="form-control form-control-lg border-0 bg-light px-4" placeholder="Номер телефона" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" id="email" name="email" class="form-control form-control-lg border-0 bg-light px-4" placeholder="Email адрес" required>
+                            </div>
+                            <button type="submit" class="btn btn-mountain btn-lg w-100 py-3 shadow">Отправить данные</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center mt-auto"><p>&copy; 2026 Горные туры</p></footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
