@@ -3,7 +3,7 @@
     --mt-light: #fdf5f2;
 }
 
-body { font-family: 'Segoe UI', sans-serif; color: #333; }
+body { font-family: 'Segoe UI', sans-serif; color: #FF0000; }
 
 /* Навигация */
 .navbar { background-color: rgba(0, 0, 0, 0.5) !important; backdrop-filter: blur(10px); }
@@ -34,3 +34,4 @@ body { font-family: 'Segoe UI', sans-serif; color: #333; }
 .btn-mountain:hover { background-color: #452113; color: #fff; }
 
 footer { background: #222; color: #fff; padding: 20px 0; }
+
