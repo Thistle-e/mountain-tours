@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- ОБНОВЛЕННАЯ ПРОВЕРКА ТЕЛЕФОНА ---
             // Разрешает: +7..., 8...,(всего от 10 до 12 символов)
-            const phoneRegex = /^(\+7|8)?[0-9]{10}$/; 
+            const phoneRegex = /^(\+7|8)[0-9]{10}$/; 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!name) {
@@ -67,4 +67,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 }); 
+
 
