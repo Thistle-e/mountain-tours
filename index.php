@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горные туры - Главная</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107312436', 'ym');
+
+        ym(107312436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/107312436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <!-- Ссылки теперь ведут на .php файлы -->
+            <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="index.php">
+                <img src="img/лого.png" alt="Logo" width="40" height="40" class="me-2">
+                ГОРНЫЕ ТУРЫ
+            </a>
+
+            <div class="ms-auto">
+                <ul class="navbar-nav flex-row gap-4">
+                    <li><a class="nav-link active" href="index.php">Главная</a></li>
+                    <li><a class="nav-link" href="list.php">Список</a></li>
+                    <li><a class="nav-link" href="form.php">Форма</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-bg text-center text-white">
+        <div class="container d-flex flex-column align-items-center">
+            <img src="img/лого.png" alt="Logo" class="img-fluid mb-2" style="max-width: 300px;">
+            <h1 class="display-1 fw-bold text-uppercase lh-1 m-0">ГОРНЫЕ ТУРЫ</h1>
+        </div>
+    </header>
+
+    <footer class="text-center"><p>&copy; 2026 Горные туры</p></footer>
+    
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
