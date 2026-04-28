@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Скрипт Горные Туры (ЛР №4) активирован!");
+    console.log("Скрипт Горные Туры (ЛР №4 + №5) активирован!");
 
-    // --- 1. ЖИВОЙ ПОИСК (для list.php) ---
+    // === 1. ЖИВОЙ ПОИСК (для list.php) — остаётся без изменений ===
     const searchInput = document.getElementById('tourSearch');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -18,46 +18,101 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. ОБРАБОТКА ФОРМЫ (для form.php) ---
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            // Сначала останавливаем отправку для проверки данных
-            e.preventDefault(); 
+    // === 2. AJAX ДЛЯ ФОРМЫ (Лабораторная №5) ===
+    // Работает только на form.php (там подключён jQuery)
+    if (typeof $ !== 'undefined' && document.getElementById('contactForm')) {
 
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
+        // Загрузка списка заявок при открытии страницы
+        loadFeedbacks();
 
-            // Регулярные выражения
-            const phoneRegex = /^(\+7|8)?[0-9]{10}$/; 
+        // Автообновление каждые 20 секунд 
+        setInterval(loadFeedbacks, 20000);
+
+        // Кнопка «Обновить список»
+        $('#refreshBtn').on('click', loadFeedbacks);
+
+        function loadFeedbacks() {
+            $('#listStatus').text('Загрузка...');
+
+            $.get('ajax.php', { action: 'get_feedbacks' }, function (data) {
+                const container = $('#feedbacksContainer');
+                container.empty();
+
+                if (!data || data.length === 0) {
+                    container.html('<div class="col-12 text-center">Пока нет заявок</div>');
+                    $('#listStatus').text('');
+                    return;
+                }
+
+                data.forEach(fb => {
+                    const html = `
+                        <div class="col">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">${fb.name}</h5>
+                                    <p class="card-text">
+                                        <strong>Телефон:</strong> ${fb.phone}<br>
+                                        <strong>Email:</strong> ${fb.email}
+                                    </p>
+                                </div>
+                                <div class="card-footer text-muted small">
+                                    ID: ${fb.id || '—'}
+                                </div>
+                            </div>
+                        </div>`;
+                    container.append(html);
+                });
+
+                $('#listStatus').text('Обновлено: ' + new Date().toLocaleTimeString('ru-RU'));
+            }, 'json').fail(() => {
+                $('#listStatus').text('Ошибка загрузки списка');
+            });
+        }
+
+        // === ОБРАБОТКА ФОРМЫ ЧЕРЕЗ AJAX (POST) ===
+        $('#contactForm').off('submit').on('submit', function (e) {
+            e.preventDefault();
+
+            const name  = $('#name').val().trim();
+            const phone = $('#phone').val().trim();
+            const email = $('#email').val().trim();
+
+            // Твоя оригинальная валидация (точно как было)
+            const phoneRegex = /^(\+7|8)?[0-9]{10}$/;
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Проверка имени
             if (!name) {
                 alert("Пожалуйста, введите ваше имя!");
                 return;
             }
-
-            // Проверка телефона (убираем пробелы перед проверкой)
             if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
                 alert("Введите корректный номер (например, +79991234567 или 89991234567)");
                 return;
             }
-
-            // Проверка Email
             if (!emailRegex.test(email)) {
                 alert("Введите корректный Email адрес!");
                 return;
             }
 
-            // Если всё верно — выводим в консоль и отправляем в PHP
-            console.log("Данные верны. Отправка в базу данных...");
-            console.log("Имя:", name, "Телефон:", phone, "Email:", email);
+            // === AJAX POST (сохраняем без перезагрузки страницы) ===
+            $.post('ajax.php', $(this).serialize(), function (res) {
+                if (res.success) {
+                    // Показываем модальное окно успеха
+                    const modal = new bootstrap.Modal(document.getElementById('successModal'));
+                    $('#modalMessage').text(res.message);
+                    modal.show();
 
-            // ВАЖНО: Вместо reset() и модалки здесь мы запускаем реальную отправку формы.
-            // Модалку "Успешно" теперь будет показывать PHP через ?success=1 в URL.
-            this.submit(); 
+                    // Очищаем форму
+                    $('#contactForm')[0].reset();
+
+                    // Сразу обновляем список заявок
+                    //loadFeedbacks();
+                } else {
+                    alert(res.message || 'Ошибка при сохранении');
+                }
+            }, 'json').fail(() => {
+                alert('Ошибка соединения с сервером');
+            });
         });
     }
 });

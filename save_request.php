@@ -1,4 +1,4 @@
-<?php
+<?php/*
 require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -13,4 +13,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // После сохранения возвращаем на страницу формы
     header('Location: contact.php?success=1');
 }
-?>
+?>*/

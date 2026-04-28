@@ -1,25 +1,6 @@
 <?php 
 // 1. Подключаем базу данных
 require_once 'db.php'; 
-
-// 2. Логика сохранения в БД (PHP обработчик)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-
-    try {
-        $sql = "INSERT INTO requests (name, phone, email) VALUES (:name, :phone, :email)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['name' => $name, 'phone' => $phone, 'email' => $email]);
-        
-        // После сохранения можно отправить сигнал для модалки через URL
-        header("Location: form.php?success=1");
-        exit;
-    } catch (PDOException $e) {
-        die("Ошибка сохранения: " . $e->getMessage());
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -29,10 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Оставить заявку | Горные приключения</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Твоя метрика остается здесь -->
 </head>
 <body>
-    <!-- Навигация (обнови ссылки на .php) -->
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="index.php">
@@ -55,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="bg-white p-5 rounded-5 shadow-lg text-center">
                         <h2 class="mb-4 fw-bold" style="color: var(--mt-brown)">ОСТАВИТЬ ЗАЯВКУ</h2>
                         
-                        <!-- ОБНОВЛЕНО: Добавлены action и method -->
-                        <form id="contactForm" action="form.php" method="POST">
+                        <form id="contactForm">
                             <div class="mb-3">
                                 <input type="text" id="name" name="name" class="form-control form-control-lg border-0 bg-light px-4" placeholder="Ваше имя" required>
                             </div>
@@ -68,42 +47,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <button type="submit" class="btn btn-mountain btn-lg w-100 py-3 shadow">Отправить данные</button>
                         </form>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Твоя модалка остается без изменений -->
-    <div class="modal fade" id="statusModal" tabindex="-1" >
+    <!-- Модальное окно успеха -->
+    <div class="modal fade" id="successModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow rounded-4">
-                <div class="modal-body text-center p-5">
-                    <h3 id="modalTitle" class="fw-bold mb-3"></h3>
-                    <p id="modalMessage" class="text-muted mb-4"></p>
-                    <button type="button" class="btn btn-mountain px-5 py-2" data-bs-dismiss="modal">Понятно</button>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold text-success">Успешно!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p id="modalMessage" class="mb-0 fs-5"></p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center">
+                    <button type="button" class="btn btn-mountain px-4" data-bs-dismiss="modal">Отлично</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Список заявок -->
+    <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3> Все заявки из базы</h3>
+            <button id="refreshBtn" class="btn btn-mountain">Обновить список</button>
+        </div>
+        
+        <div id="feedbacksContainer" class="row row-cols-1 row-cols-md-2 g-4">
+            <!-- Заполняется через JS -->
+        </div>
+        
+        <p id="listStatus" class="text-center text-muted mt-3"></p>
+    </div>
+
     <footer class="text-center mt-auto"><p>&copy; 2026 Горные туры</p></footer>
 
+    <!-- Подключаем скрипты (один раз!) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
-    
-    <!-- Скрипт для показа модалки при успешной отправке PHP -->
-    <?php if(isset($_GET['success'])): ?>
-    <script>
-        window.onload = function() {
-            const modalEl = document.getElementById('statusModal');
-            document.getElementById('modalTitle').innerText = "Успешно!";
-            document.getElementById('modalMessage').innerText = "Данные сохранены в базу данных tourhub!";
-            const myModal = new bootstrap.Modal(modalEl);
-            myModal.show();
-        }
-    </script>
-    <?php endif; ?>
 </body>
 </html>
